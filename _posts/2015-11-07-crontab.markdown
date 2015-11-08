@@ -1,12 +1,8 @@
 ---
 layout: post
 title:  "crontab 定时任务"
-date:   2015-07-11 19:17:00
+date:   2015-11-07 19:17:00
 ---
-html代码:
-{% highlight html %}
-{% endhighlight %}
-
 
 
 # 命令格式
