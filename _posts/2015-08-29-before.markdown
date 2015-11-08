@@ -50,3 +50,10 @@ css代码:
     left: -9px; 
 }
 {% endhighlight %}
+
+##例子
+<link rel="stylesheet" href="{{ "/static/css/post_20150829.css" | prepend: site.baseurl }}">
+<div class="msg-wrap">
+    <span>This is a new message</span>
+    <div class="new-msg">NEW</div>
+</div>
