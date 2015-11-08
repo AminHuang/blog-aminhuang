@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "清除浮动的影响"
+date:   2015-03-16 18:14:00
+---
+设置了浮动之后我们经常会发现父元素的高度并没有包含浮动的元素的高度，这经常会让我们觉得很困扰。
+
+在设置的float的父元素属性增加以下两条：
+{% highlight css %}
+zoom:1;
+overflow:auto;
+{% endhighlight %}
+
+
+zoom：normal / number / percentage
+
+默认值：normal
+
+normal：使用对象的实际尺寸
+number：用浮点数来定义缩放比例。不允许负值
+percentage：用百分比来定义缩放比例。不允许负值
+
+
+zoom:1指的就是原大小显示
+
+注：zoom这个属性并不是所有浏览器都兼容。
+
+
+
+
+
+
+
+
+
+

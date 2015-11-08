@@ -1,0 +1,41 @@
+---
+layout: post
+title:  "锚点控制页面内跳转"
+date:   2015-03-16 18:14:00
+---
+Document对象的数组anchors[]包含了代表HTML文档中已命名位置的Anchor对象，这些位置都由标记<a>和它的性质name标识。
+
+Anchor对象是一种比较简单的对象。它所定义的唯一标准属性是name，即HTML性质name的值。
+
+<div style="background:#ffff00; height:60px;">
+<span id = "lookMe">
+    点击最下面链接就会跳转到这里啦~
+</span>
+<hr>
+</div>
+
+
+<hr>
+有一段html代码:
+{% highlight html %}
+<span id = "lookMe"></span>
+{% endhighlight %}
+
+只需要用
+{% highlight html %}
+<a href="#lookMe"></a>
+{% endhighlight %}
+就可以实现页面内跳转
+页面会显示id为lookMe的部分
+
+URL上显示为：/index.html#lookMe
+
+尝试一下~
+
+<a href="#lookMe">点击我跳转回上面</a>
+
+
+
+
+
+

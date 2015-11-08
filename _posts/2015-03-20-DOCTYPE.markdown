@@ -1,0 +1,51 @@
+---
+layout: post
+title:  "&lt;!DOCTYPE&gt; 标签"
+date:   2015-03-20 17:14:00
+---
+
+文档模式
+---
+
+IE5.5引入了文档模式的概念，这个概念是通过使用文档类型(doctype)切换实现的。    
+
+最初的两种文档模式是混杂模式(quirks mode)和标准模式(standrads mode)。混杂模式会让IE的行为与（包含非标准特性的）IE5相同，而标准模式则让IE的行为更接近标准行为。       
+备注：以上这段话来自《JavaScript高级程序设计》2.3文档模式     
+
+
+<!DOCTYPE>声明
+---------
+
+<!DOCTYPE>声明帮助浏览器正确地显示网页。       
+
+<!DOCTYPE>不是HTML标签，它为浏览器提供一项信息（声明），即HTML是用什么版本编写的。            
+
+所有浏览器都支持<!DOCTYPE>声明。          
+
+#### 定义和用法        
+
+<!DOCTYPE>声明必须是HTML文档的第一行，位于<html>标签之前。       
+
+
+
+HTML5 <!DOCTYPE> 标签
+----
+
+HTML4.01中的doctype需要对DTD继续进行引用，因为HTML4.01基于SGML。而HTML5不基于SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为。         
+
+在 HTML 4.01 中有 3 个不同的文档类型，在 HTML 5 中只有一个：  
+{% highlight html %}
+<!DOCTYPE html> 
+{% endhighlight %}   
+       
+
+
+
+
+
+
+
+     
+
+
+
