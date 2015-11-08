@@ -5,9 +5,9 @@ date:   2015-11-07 15:17:00
 ---
 
 # 命令格式
-{% highlight %}
+
 crontab [-u user] [ -e | -l | -r ]
-{% endhighlight %}
+
 
 
 #命令参数
@@ -33,69 +33,69 @@ file：file是命令文件的名字,表示将file做为crontab的任务列表文
 #使用实例
 
 实例1：每1分钟执行一次myCommand
-{% highlight %}
+
 * * * * * myCommand
-{% endhighlight %}
+
 
 实例2：每小时的第3和第15分钟执行
-{% highlight %}
+
 3,15 * * * * myCommand
-{% endhighlight %}
+
 
 实例3：在上午8点到11点的第3和第15分钟执行
-{% highlight %}
+
 3,15 8-11 * * * myCommand
-{% endhighlight %}
+
 
 实例4：每隔两天的上午8点到11点的第3和第15分钟执行
-{% highlight %}
+
 3,15 8-11 */2  *  * myCommand
-{% endhighlight %}
+
 
 实例5：每周一上午8点到11点的第3和第15分钟执行
-{% highlight %}
+
 3,15 8-11 * * 1 myCommand
-{% endhighlight %}
+
 
 实例6：每晚的21:30重启smb
-{% highlight %}
+
 30 21 * * * /etc/init.d/smb restart
-{% endhighlight %}
+
 
 实例7：每月1、10、22日的4 : 45重启smb
-{% highlight %}
+
 45 4 1,10,22 * * /etc/init.d/smb restart
-{% endhighlight %}
+
 
 实例8：每周六、周日的1 : 10重启smb
-{% highlight %}
+
 10 1 * * 6,0 /etc/init.d/smb restart
-{% endhighlight %}
+
 
 实例9：每天18 : 00至23 : 00之间每隔30分钟重启smb
-{% highlight %}
+
 0,30 18-23 * * * /etc/init.d/smb restart
-{% endhighlight %}
+
 
 实例10：每星期六的晚上11 : 00 pm重启smb
-{% highlight %}
+
 0 23 * * 6 /etc/init.d/smb restart
-{% endhighlight %}
+
 
 实例11：每一小时重启smb
-{% highlight %}
+
 * */1 * * * /etc/init.d/smb restart
-{% endhighlight %}
+
 
 实例12：晚上11点到早上7点之间，每隔一小时重启smb
-{% highlight %}
+
 * 23-7/1 * * * /etc/init.d/smb restart
-{% endhighlight %}
+
 
 为了提交你刚刚创建的crontab文件，可以把这个新创建的文件作为cron命令的参数:
-{% highlight %}
+
 $ crontab davecron
-{% endhighlight %}
+
 
 #列出crontab文件
 
@@ -123,4 +123,3 @@ $crontab -r
 # (put your own initials here) echo the date to the console every
 # 1 minutes
 * * * * * date | tee ~/itilwebapps/aminhuang_test/readme.txt
-{% endhighlight %}
