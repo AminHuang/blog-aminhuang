@@ -33,9 +33,9 @@ file：file是命令文件的名字,表示将file做为crontab的任务列表文
 #使用实例
 
 实例1：每1分钟执行一次myCommand
-
+```
     * * * * * myCommand
-
+```
 
 实例2：每小时的第3和第15分钟执行
 
