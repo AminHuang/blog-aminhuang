@@ -157,7 +157,7 @@ $crontab -r
 #自己例子：
 
 ```
-# (put your own initials here) echo the date to the console every
-# 1 minutes
-* * * * * date | tee ~/itilwebapps/aminhuang_test/readme.txt
+    # (put your own initials here) echo the date to the console every
+    # 1 minutes
+    * * * * * date | tee ~/itilwebapps/aminhuang_test/readme.txt
 ```
