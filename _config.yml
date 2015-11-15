@@ -12,5 +12,5 @@ github_username:  aminhuang
 # Build settings
 markdown: kramdown
 
-paginate: 5
-paginate_path: "page:num"
+# paginate: 5
+# paginate_path: "page:num"
