@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>一叶知秋</title>
+    <description>The blog for aminhuang
+</description>
+    <link>http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/</link>
+    <atom:link href="http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 15 Nov 2015 22:20:21 +0800</pubDate>
+    <lastBuildDate>Sun, 15 Nov 2015 22:20:21 +0800</lastBuildDate>
+    <generator>Jekyll v3.0.0</generator>
+    
+      <item>
+        <title>出现过的github page不成功的bug</title>
+        <description>&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;jekyll的_posts里的文件名的日期与文件内date的日期不一致&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;jekyll语法错误&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sun, 08 Nov 2015 19:12:00 +0800</pubDate>
+        <link>http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/11/08/github-page-bug.html</link>
+        <guid isPermaLink="true">http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/11/08/github-page-bug.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>crontab 定时任务</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;命令格式&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+crontab [-u user] [ -e | -l | -r ]
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;命令参数&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;-u user：用来设定某个用户的crontab服务；
+file：file是命令文件的名字,表示将file做为crontab的任务列表文件并载入crontab。如果在命令行中没有指定这个文件，crontab命令将接受标准输入（键盘）上键入的命令，并将它们载入crontab。&lt;/li&gt;
+  &lt;li&gt;-e：编辑某个用户的crontab文件内容。如果不指定用户，则表示编辑当前用户的crontab文件。&lt;/li&gt;
+  &lt;li&gt;-l：显示某个用户的crontab文件内容，如果不指定用户，则表示显示当前用户的crontab文件内容。&lt;/li&gt;
+  &lt;li&gt;-r：从/var/spool/cron目录中删除某个用户的crontab文件，如果不指定用户，则默认删除当前用户的crontab文件。&lt;/li&gt;
+  &lt;li&gt;-i：在删除用户的crontab文件时给确认提示。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;crontab&quot;&gt;crontab的文件格式&lt;/h1&gt;
+
+&lt;p&gt;分 时 日 月 星期 要运行的命令
+第1列分钟1～59
+第2列小时1～23（0表示子夜）
+第3列日1～31
+第4列月1～12
+第5列星期0～6（0表示星期天）
+第6列要运行的命令&lt;/p&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;使用实例&lt;/h1&gt;
+
+&lt;p&gt;实例1：每1分钟执行一次myCommand&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+* * * * * myCommand
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;实例2：每小时的第3和第15分钟执行&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+3,15 * * * * myCommand
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;实例3：在上午8点到11点的第3和第15分钟执行&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+3,15 8-11 * * * myCommand
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;实例4：每隔两天的上午8点到11点的第3和第15分钟执行&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+3,15 8-11 */2  *  * myCommand
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;实例5：每周一上午8点到11点的第3和第15分钟执行&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+3,15 8-11 * * 1 myCommand
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;实例6：每晚的21:30重启smb&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+30 21 * * * /etc/init.d/smb restart
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;实例7：每月1、10、22日的4 : 45重启smb&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+45 4 1,10,22 * * /etc/init.d/smb restart
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;实例8：每周六、周日的1 : 10重启smb&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+10 1 * * 6,0 /etc/init.d/smb restart
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;实例9：每天18 : 00至23 : 00之间每隔30分钟重启smb&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+0,30 18-23 * * * /etc/init.d/smb restart
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;实例10：每星期六的晚上11 : 00 pm重启smb&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+0 23 * * 6 /etc/init.d/smb restart
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;实例11：每一小时重启smb&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+* */1 * * * /etc/init.d/smb restart
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;实例12：晚上11点到早上7点之间，每隔一小时重启smb&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+* 23-7/1 * * * /etc/init.d/smb restart
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;为了提交你刚刚创建的crontab文件，可以把这个新创建的文件作为cron命令的参数:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+$ crontab davecron
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;crontab-1&quot;&gt;列出crontab文件&lt;/h1&gt;
+
+&lt;p&gt;使用-l参数列出crontab文件:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+$ crontab -l
+0,15,30,45,18-06 * * * /bin/echo `date` &amp;gt; dev/tty1
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;可以使用这种方法在$HOME目录中对crontab文件做一备份:
+&lt;code&gt;
+$ crontab -l &amp;gt; $HOME/mycron
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;crontab-2&quot;&gt;编辑crontab文件&lt;/h1&gt;
+
+&lt;p&gt;如果希望添加、删除或编辑crontab文件中的条目，而EDITOR环境变量又设置为vi，那么就可以用vi来编辑crontab文件:
+&lt;code&gt;
+$ crontab -e
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;crontab-3&quot;&gt;删除crontab文件&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+$crontab -r
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;section-3&quot;&gt;自己例子：&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+    # (put your own initials here) echo the date to the console every
+    # 1 minutes
+    * * * * * date | tee ~/itilwebapps/aminhuang_test/readme.txt
+&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 07 Nov 2015 23:17:00 +0800</pubDate>
+        <link>http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/11/07/crontab.html</link>
+        <guid isPermaLink="true">http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/11/07/crontab.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>CSS3创建不规则图形</title>
+        <description>&lt;p&gt;HTML代码:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE HTML&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+       &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Content-Type&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/html&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+       &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/css&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sytle.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+       &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;msg-wrap&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+           &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;This is a new message&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+           &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;new-msg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;NEW&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+       &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;css代码:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.msg-wrap&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;16px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.msg-wrap&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.new-msg&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inline-block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#9fc315&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#fefefe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;12px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;8px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.msg-wrap&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.new-msg&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;border-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;9px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;border-style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;solid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;border-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;transparent&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#9fc315&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;transparent&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;transparent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-9px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;例子&lt;/h2&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/blog-aminhuang/static/css/post_20150829.css&quot; /&gt;
+
+&lt;div class=&quot;msg-wrap&quot;&gt;
+    &lt;span&gt;This is a new message&lt;/span&gt;
+    &lt;div class=&quot;new-msg&quot;&gt;NEW&lt;/div&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sat, 29 Aug 2015 23:17:00 +0800</pubDate>
+        <link>http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/08/29/before.html</link>
+        <guid isPermaLink="true">http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/08/29/before.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>作用域链与闭包</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;作用域&lt;/h2&gt;
+&lt;p&gt;在JavaScript中有全局作用域和局部作用域，没有块级作用域，局部变量的优先级高于全局变量。
+声明提前：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;global&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scopeTest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;local&quot;&lt;/span&gt;  
+   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+   &lt;span class=&quot;nx&quot;&gt;scopeTest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//undefined&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;在scopeTest()函数里面因为有和全局环境中相同的变量，虽然声明写在了后面，但是在执行函数的时候声明提前了。在这儿输出的就不是全局变量中的变量值，而是函数体内部的变量值。
+  在执行完函数之后再输出scope的值就还会是global，内部同名局部变量不改变全局变量中的值。&lt;/p&gt;
+&lt;pre&gt;
+  var scope=&quot;global&quot;;
+  function scopeTest(){
+      console.log(scope);
+      var scope=&quot;local&quot;  
+   }
+   scopeTest(); //undefined
+   console.log(scope); //“global”
+&lt;/pre&gt;
+
+&lt;p&gt;作用域链
+  每个函数都有自己的执行环境。当执行流进入一个函数时，执行的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。
+  当代码在一个环境中执行时，会创建变量对象的一个作用域链（scope chain）。
+  作用域链的用途，是保证对执行环境有权访问的所有变量和函数的有序访问。
+  作用域链的前端，始终都是当前执行代码所在环境的变量对象。
+  如果这个环境是函数，则将其活动对象作为变量对象。活动对象在最开始时只包含一个变量，就是arguments对象（这个对象在全局环境中是不存在的）。
+  作用域链的下一个变量对象来自包含（外部）环境，而再下一个变量对象则来自下一个包含环境。这样一直延续到全局执行环境。全局执行环境的变量对象时钟都是作用域链的最后一个对象。
+  无论什么时候在函数中访问一个变量时，就会从作用域链中搜索具有相应名字的变量。一般来说，当函数执行完毕之后，局部对象就会被销毁，内存中仅保存全局作用域（全局执行环境的变量对象）。
+  变量的查找会从第一个链的对象开始，如果对象中包含变量属性，那么停止查找，如果没有就会继续向上级作用域链查找，知道找到全局对象。作用域链的逐级查找会影响到程序的性能，变量作用域链越长对性能影响越大，所以应当尽量避免使用全局变量。&lt;/p&gt;
+
+&lt;p&gt;闭包
+  闭包是指在当前作用域内总是能访问外部作用域中的变量。&lt;/p&gt;
+
+&lt;p&gt;“在另一个函数内部定义的函数会将包含函数（即外部函数）的活动对象添加到它的作用域链中。”BY《JavaScript高级程序设计》&lt;/p&gt;
+&lt;pre&gt;
+  function f1() {
+    var n = 999;
+    nAdd = function() { n+=1;}
+    function f2() {
+      alert(n);
+    }
+    return f2;
+  }
+  var result = f1();
+  result(); // 执行alert(n), n = 999
+  nAdd(); // 执行n+=1;
+  result(); // 再次执行alert(n), n = 1000
+&lt;/pre&gt;
+&lt;p&gt;闭包的最大用途：1.读取函数内部的变量 2.让变量的值始终保存在内存中。
+  见上面例子，result实际上是闭包f2函数，从运行结果可以看到，函数f1的局部变量n一直保存在内存中，并没有在f1调用之后被自动清除。
+  注意，在上面的例子中，nAdd是全局变量。&lt;/p&gt;
+
+&lt;p&gt;· 在闭包中的变量
+  在使用闭包的时候，由于作用域链机制的影响，闭包只能取得内部函数的最后一个值，这引起的一个副作用是如果内部函数在一个循环中，那么变量的值始终为最后一个值。
+  例如以下例子：&lt;/p&gt;
+&lt;pre&gt;
+function createFunctions() {
+  var result = new Array();
+  for (var i = 0; i &amp;lt; 10; i++) {
+    result[i] = function() {
+      return i;
+    }
+  }
+  reutrn result;
+}
+&lt;/pre&gt;
+&lt;p&gt;这个函数会返回一个函数数组，表面上看，似乎每个函数都应该返回自己的索引。
+  但实际上，每个函数都返回10。因为每个函数的作用域链中都保存着createFunctions()函数的活动对象，所有它们引用的都是同一个变量i。当createFuntions()函数返回后，变量i的值都是10。此时，每个函数都引用着保存变量i的同一个变量对象，所以在每一个函数内部i的值都是10.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 02 Apr 2015 00:14:00 +0800</pubDate>
+        <link>http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/04/02/closeur.html</link>
+        <guid isPermaLink="true">http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/04/02/closeur.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>&amp;lt;!DOCTYPE&amp;gt; 标签</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;文档模式&lt;/h2&gt;
+
+&lt;p&gt;IE5.5引入了文档模式的概念，这个概念是通过使用文档类型(doctype)切换实现的。&lt;/p&gt;
+
+&lt;p&gt;最初的两种文档模式是混杂模式(quirks mode)和标准模式(standrads mode)。混杂模式会让IE的行为与（包含非标准特性的）IE5相同，而标准模式则让IE的行为更接近标准行为。     &lt;br /&gt;
+备注：以上这段话来自《JavaScript高级程序设计》2.3文档模式&lt;/p&gt;
+
+&lt;h2 id=&quot;doctype&quot;&gt;&amp;lt;!DOCTYPE&amp;gt;声明&lt;/h2&gt;
+
+&lt;p&gt;&amp;lt;!DOCTYPE&amp;gt;声明帮助浏览器正确地显示网页。&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;!DOCTYPE&amp;gt;不是HTML标签，它为浏览器提供一项信息（声明），即HTML是用什么版本编写的。&lt;/p&gt;
+
+&lt;p&gt;所有浏览器都支持&amp;lt;!DOCTYPE&amp;gt;声明。&lt;/p&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;定义和用法&lt;/h4&gt;
+
+&lt;p&gt;&amp;lt;!DOCTYPE&amp;gt;声明必须是HTML文档的第一行，位于&amp;lt;html&amp;gt;标签之前。&lt;/p&gt;
+
+&lt;h2 id=&quot;html5-doctype-&quot;&gt;HTML5 &amp;lt;!DOCTYPE&amp;gt; 标签&lt;/h2&gt;
+
+&lt;p&gt;HTML4.01中的doctype需要对DTD继续进行引用，因为HTML4.01基于SGML。而HTML5不基于SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为。&lt;/p&gt;
+
+&lt;p&gt;在 HTML 4.01 中有 3 个不同的文档类型，在 HTML 5 中只有一个：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+        <pubDate>Sat, 21 Mar 2015 01:14:00 +0800</pubDate>
+        <link>http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/03/21/doctype.html</link>
+        <guid isPermaLink="true">http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/03/21/doctype.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>DOM与BOM</title>
+        <description>&lt;p&gt;回顾基础知识。&lt;/p&gt;
+
+&lt;h2 id=&quot;dom&quot;&gt;DOM&lt;/h2&gt;
+
+&lt;p&gt;DOM, Document Object Model, 文档对象模型，是针对XML但被经过扩展用于HTML的应用程序编程接口(API, Application Programming Interface)。 &lt;br /&gt;
+DOM把整个页面映射成一个多层节点结构。 &lt;br /&gt;
+通过DOM创建表示整个文档的树形图，开发人员获得了控制页面内容和结构的主动权，借助DOM提供的API，开发人员可以轻松自如地删除、添加、替换或修改任何节点。&lt;/p&gt;
+
+&lt;h3 id=&quot;dom-1&quot;&gt;DOM级别&lt;/h3&gt;
+
+&lt;h4 id=&quot;dom1&quot;&gt;DOM1级&lt;/h4&gt;
+&lt;p&gt;DOM1级由两个模块组成：&lt;em&gt;DOM核心(DOM Core)&lt;/em&gt;和&lt;em&gt;DOM HTML&lt;/em&gt;。 &lt;br /&gt;
+DOM核心规定的是如何映射基于XML的文档结构，以便简化对文档中任意部分的访问和操作。 &lt;br /&gt;
+DOM HTML模块在DOM核心的基础上加以扩展，添加了对HTML的对象和方法。&lt;/p&gt;
+
+&lt;h4 id=&quot;dom2&quot;&gt;DOM2级&lt;/h4&gt;
+&lt;p&gt;DOM2级在原来DOM基础上又扩充了鼠标和用户界面事件、范围、遍历（迭代DOM文档的方法）等细分模块，而且通过对象接口增加了对CSS的支持。 &lt;br /&gt;
+DOM2级引入了下列新模块，也给出了众多新类型和新接口的定义。 &lt;br /&gt;
+*   DOM视图(DOM Views):定义了跟踪不同文档（例如，应用CSS之前和之后的文档）视图的接口 &lt;br /&gt;
+*   DOM事件(DOM Events):定义了事件好事件处理的接口 &lt;br /&gt;
+*   DOM样式(DOM Style):定义了基于CSS为元素应用样式的接口 &lt;br /&gt;
+*   DOM遍历和范围(DOM Traersal and Range):定义了遍历和操作文档树的接口&lt;/p&gt;
+
+&lt;h4 id=&quot;dom3&quot;&gt;DOM3级&lt;/h4&gt;
+&lt;p&gt;DOM加载和保存(DOM Load and Save)    模块：引入了以统一方式加载和保存文档的方法 &lt;br /&gt;
+DOM验证(DOM Validation)模块：新增了验证文档的方法   &lt;br /&gt;
+DOM3级也对DOM核心进行了扩展，开始支持XML1.0的标准&lt;/p&gt;
+
+&lt;h2 id=&quot;bom&quot;&gt;BOM&lt;/h2&gt;
+
+&lt;p&gt;BOM, Brower Object Model, 浏览器对象模型，可访问和操作浏览器窗口。 &lt;br /&gt;
+没有BOM标准可以遵循，因此每个浏览器都有自己的实现。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 21 Mar 2015 00:14:00 +0800</pubDate>
+        <link>http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/03/21/javascript-dom-bom.html</link>
+        <guid isPermaLink="true">http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/03/21/javascript-dom-bom.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>清除浮动的影响</title>
+        <description>&lt;p&gt;设置了浮动之后我们经常会发现父元素的高度并没有包含浮动的元素的高度，这经常会让我们觉得很困扰。&lt;/p&gt;
+
+&lt;p&gt;在设置的float的父元素属性增加以下两条：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;zoom&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:auto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;zoom：normal / number / percentage&lt;/p&gt;
+
+&lt;p&gt;默认值：normal&lt;/p&gt;
+
+&lt;p&gt;normal：使用对象的实际尺寸
+number：用浮点数来定义缩放比例。不允许负值
+percentage：用百分比来定义缩放比例。不允许负值&lt;/p&gt;
+
+&lt;p&gt;zoom:1指的就是原大小显示&lt;/p&gt;
+
+&lt;p&gt;注：zoom这个属性并不是所有浏览器都兼容。&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 17 Mar 2015 02:14:00 +0800</pubDate>
+        <link>http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/03/17/float.html</link>
+        <guid isPermaLink="true">http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/03/17/float.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>锚点控制页面内跳转</title>
+        <description>&lt;p&gt;Document对象的数组anchors[]包含了代表HTML文档中已命名位置的Anchor对象，这些位置都由标记&lt;a&gt;和它的性质name标识。&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Anchor对象是一种比较简单的对象。它所定义的唯一标准属性是name，即HTML性质name的值。&lt;/p&gt;
+
+&lt;div style=&quot;background:#ffff00; height:60px;&quot;&gt;
+&lt;span id=&quot;lookMe&quot;&gt;
+    点击最下面链接就会跳转到这里啦~
+&lt;/span&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;有一段html代码:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id =&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lookMe&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;只需要用&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#lookMe&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;就可以实现页面内跳转
+页面会显示id为lookMe的部分&lt;/p&gt;
+
+&lt;p&gt;URL上显示为：/index.html#lookMe&lt;/p&gt;
+
+&lt;p&gt;尝试一下~&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#lookMe&quot;&gt;点击我跳转回上面&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 17 Mar 2015 02:14:00 +0800</pubDate>
+        <link>http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/03/17/anchors.html</link>
+        <guid isPermaLink="true">http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/03/17/anchors.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>CSS3创建一个旋转可变色按钮</title>
+        <description>&lt;p&gt;html代码:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;button&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;旋转按钮&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;css代码:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.button&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#aaa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#555&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;bold&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;15px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;15px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;50px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;cursor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pointer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+
+    &lt;span class=&quot;nl&quot;&gt;-webkit-transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-webkit-transform&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opacity&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;background&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;font-size&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nl&quot;&gt;-o-transition-property&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-o-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;-o-transition-duration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nl&quot;&gt;-moz-transition-property&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-moz-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;-moz-transition-duration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nl&quot;&gt;transition-property&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;transition-duration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nl&quot;&gt;-webkit-border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2px&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nl&quot;&gt;text-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inline-block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;上面代码用来转换属性，它可以定义转换宽度，高度，背景，颜色，透明度等等。
+在这里定义了过渡时间为1s。&lt;/p&gt;
+
+&lt;p&gt;下面，定义鼠标悬浮时候产生的效果。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.button&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:hover&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;-moz-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;-webkit-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;-o-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;360deg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#99a411&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;30px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#fff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;旋转360度，其余代码是更改颜色，字体大小，颜色。&lt;/p&gt;
+
+&lt;p&gt;效果：&lt;/p&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/blog-aminhuang/static/css/post_20150313.css&quot; /&gt;
+
+&lt;div&gt;
+    &lt;a class=&quot;button&quot;&gt;旋转按钮&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;附上过渡属性列表：&lt;/p&gt;
+&lt;div&gt;
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr&gt; 
+&lt;th style=&quot;width:30%;&quot;&gt;属性&lt;/th&gt; &lt;th&gt;描述&lt;/th&gt; &lt;th style=&quot;width:5%;&quot;&gt;CSS&lt;/th&gt; 
+&lt;/tr&gt;
+&lt;tr&gt; 
+&lt;td&gt;transition&lt;/td&gt;
+&lt;td&gt;简写属性，用于在一个属性中设置四个过渡属性。&lt;/td&gt; 
+&lt;td&gt;3&lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;transition-property&lt;/td&gt; &lt;td&gt;规定应用过渡的 CSS 属性的名称。&lt;/td&gt; &lt;td&gt;3&lt;/td&gt; 
+&lt;/tr&gt; 
+&lt;tr&gt; &lt;td&gt;transition-duration&lt;/td&gt; &lt;td&gt;定义过渡效果花费的时间。默认是 0。&lt;/td&gt; &lt;td&gt;3&lt;/td&gt; &lt;/tr&gt; 
+&lt;tr&gt; &lt;td&gt;transition-timing-function&lt;/td&gt; &lt;td&gt;规定过渡效果的时间曲线。默认是 &quot;ease&quot;。&lt;/td&gt; &lt;td&gt;3&lt;/td&gt; &lt;/tr&gt; 
+&lt;tr&gt; &lt;td&gt;transition-delay&lt;/td&gt; &lt;td&gt;规定过渡效果何时开始。默认是 0。&lt;/td&gt; &lt;td&gt;3&lt;/td&gt; &lt;/tr&gt; 
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Fri, 13 Mar 2015 23:17:00 +0800</pubDate>
+        <link>http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/03/13/css3-transform-study.html</link>
+        <guid isPermaLink="true">http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/2015/03/13/css3-transform-study.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 11 Mar 2015 23:07:17 +0800</pubDate>
+        <link>http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/jekyll/update/2015/03/11/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://aminhuang.github.io/blog-aminhuang//blog-aminhuang/jekyll/update/2015/03/11/welcome-to-jekyll.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+  </channel>
+</rss>

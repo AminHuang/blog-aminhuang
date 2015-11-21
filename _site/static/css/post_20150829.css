@@ -1,0 +1,25 @@
+.msg-wrap span {
+    font-size: 16px;
+}
+.msg-wrap .new-msg {
+    display: inline-block;
+    background: #9fc315;
+    color: #fefefe;
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    position: relative;
+    margin-left: 6px;
+}
+
+.msg-wrap .new-msg:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: 5px 9px 5px 0;
+    border-style: solid;
+    border-color: transparent #9fc315 transparent transparent;
+    top: 6px;
+    left: -9px; 
+}
